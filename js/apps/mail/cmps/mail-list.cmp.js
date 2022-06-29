@@ -1,4 +1,4 @@
-import { utilService } from "../../services/util.service.js";
+import { utilService } from "../../../services/util.service.js";
 import mailPreview from "./mail-preview.cmp.js";
 
 export default {

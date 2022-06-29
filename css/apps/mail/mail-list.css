@@ -1,7 +1,8 @@
 .ul-list {}
 
-.li-mail {
-    display: flex
+.li-mail section {
+    display: flex;
+    cursor: pointer;
 }
 
 .read-mail{

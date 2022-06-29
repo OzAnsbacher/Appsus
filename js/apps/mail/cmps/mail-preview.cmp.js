@@ -1,25 +1,31 @@
-// import { utilService } from '../service/util-service.js'
+import mailOpen from "./mail-open.cmp.js";
 
 export default {
   props: ["mail"],
   template: `
-
-    <div class="mail-name" @click="selectIsRead(mail.id)" :class="{'read-mail':isRead}" >{{nameSend}}</div>
-    <div class="mail-subject" @click="selectIsRead(mail.id)" :class="{'read-mail':isRead}">{{subject}}</div>
-    <div class="mail-sentAt" @click="selectIsRead(mail.id)" :class="{'read-mail':isRead}">{{time}}</div>
-    <button>Read</button>
-    <button>Delete</button>
-    <button>Comment</button>
+  <mail-open :mail="mail" v-if="isOpen" />
+<section v-else>
+  <div class="mail-name" @click="selectMail(mail)" :class="{'read-mail':isRead}" >{{nameSend}}</div>
+  <div class="mail-subject" @click="selectMail(mail)" :class="{'read-mail':isRead}">{{subject}}</div>
+  <div class="mail-sentAt" @click="selectMail(mail)" :class="{'read-mail':isRead}">{{time}}</div>
+  <button>Read</button>
+  <button>Delete</button>
+  <button>Comment</button>
+</section>
    `,
   data() {
     return {
       nameSend: null,
       subject: null,
       time: null,
-      isRead: null
+      isRead: null,
+      isOpen:null
     };
 
   },
+  components: {
+    mailOpen
+},
   created() {
     this.nameSend = this.mail.to.slice(0, this.mail.to.indexOf('@')),
       this.subject = this.mail.subject
@@ -49,9 +55,9 @@ export default {
       var monthToDisplay = (month < 10) ? '0' + month : month
       return 'At ' + year + '-' + monthToDisplay + '-' + date
     },
-    selectIsRead(idx) {
-      console.log(idx);
-      this.$emit("changeIsRead", idx)
+    selectMail(mail) {
+      this.isRead=!mail.isRead
+      this.$emit("changeIsRead", mail.idx)
     },
   },
   computed: {

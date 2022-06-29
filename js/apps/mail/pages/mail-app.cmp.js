@@ -1,6 +1,6 @@
-import { utilService } from "../../services/util.service.js";
-import { mailService } from "./service/mail.service.js";
-import mailList from "./mail-list.cmp.js";
+import { utilService } from "../../../services/util.service.js";
+import { mailService } from "../service/mail.service.js";
+import mailList from "../cmps/mail-list.cmp.js";
 
 export default {
     template: `
