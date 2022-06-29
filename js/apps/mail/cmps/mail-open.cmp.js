@@ -1,15 +1,17 @@
 export default {
     props: ["mail"],
     template: `
- <subject-mail>{{mail.subject}}</subject-mail>
- <send-mail>{{nameSend}}</send-mail>
- <time-mail>{{time}}</time-mail>
- <body-mail>{{mail.body}}</body-mail>
+    <section class="open-mail" @click="closeMail">
+        <subject-mail>{{mail.subject}}</subject-mail>
+        <send-mail><span class="label-open-mail">From:</span>{{nameSend}}</send-mail>
+        <time-mail><span class="label-open-mail">At:</span>{{time}}</time-mail>
+        <body-mail><span class="label-open-mail">Body:</span>{{mail.body}}</body-mail>
+    </section>
 `,
     data() {
         return {
             nameSend: null,
-            time:null,
+            time: null,
             nameSend: null,
 
 
@@ -28,9 +30,14 @@ export default {
             var date = newDate.getDate()
             var hours = newDate.getHours()
             var minutes = newDate.getMinutes()
-
+            year = year % 100
+            minutes = (minutes < 10) ? '0' + minutes : minutes
+            hours = (hours < 10) ? '0' + hours : hours
             month = (month < 10) ? '0' + month : month
-            this.time=  year + '-' + month + '-' + date
+            this.time = `${date}-${month}-${year} | ${hours}:${minutes}`
+        },
+        closeMail(){
+            this.$emit("closedMail")
         }
     },
     computed: {},

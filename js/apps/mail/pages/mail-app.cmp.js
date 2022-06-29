@@ -19,10 +19,10 @@ export default {
         mailList
     },
     created() {
-        utilService.query('mailDB')
+        mailService.query('mailDB')
             .then(mails => {
                 this.mails = mails
-                // console.log(this.mails)
+                console.log(this.mails)
             })
     },
     methods: {},

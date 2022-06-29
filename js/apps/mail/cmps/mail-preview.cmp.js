@@ -3,12 +3,12 @@ import mailOpen from "./mail-open.cmp.js";
 export default {
   props: ["mail"],
   template: `
-  <mail-open :mail="mail" v-if="isOpen" />
+  <mail-open :mail="mail" v-if="isOpen" @closedMail="isOpen=null" />
 <section v-else>
-  <div class="mail-name" @click="selectMail(mail)" :class="{'read-mail':isRead}" >{{nameSend}}</div>
-  <div class="mail-subject" @click="selectMail(mail)" :class="{'read-mail':isRead}">{{subject}}</div>
-  <div class="mail-sentAt" @click="selectMail(mail)" :class="{'read-mail':isRead}">{{time}}</div>
-  <button>Read</button>
+  <div class="mail-name" @click="selectMail(mail.id)" :class="{'read-mail':isRead}" >{{nameSend}}</div>
+  <div class="mail-subject" @click="selectMail(mail.id)" :class="{'read-mail':isRead}">{{subject}}</div>
+  <div class="mail-sentAt" @click="selectMail(mail.id)" :class="{'read-mail':isRead}">{{time}}</div>
+  <button @click="selectMail(mail.id, false)">Read</button>
   <button>Delete</button>
   <button>Comment</button>
 </section>
@@ -55,10 +55,11 @@ export default {
       var monthToDisplay = (month < 10) ? '0' + month : month
       return 'At ' + year + '-' + monthToDisplay + '-' + date
     },
-    selectMail(mail) {
-      this.isOpen=!this.isOpen
-      this.isRead=!mail.isRead
-      this.$emit("changeIsRead", mail.idx)
+    selectMail(idx, toOpenMail=true) {
+      if(toOpenMail) this.isOpen=true
+      this.isRead=false
+      console.log(idx);
+      this.$emit("changeIsRead", idx)
     },
   },
   computed: {
