@@ -1,9 +1,12 @@
+import { utilService } from "../../services/util.service.js";
 import { mailService } from "./service/mail.service.js";
+import mailList from "./mail-list.cmp.js";
 
 export default {
     template: `
       <section class="mail-conteiner">
-        <mail-list :mail="mailToShow"></mail-list>
+        <h1>mail</h1>
+        <mail-list :mails="mailToShow"></mail-list>
       </section>
 
 `,
@@ -13,18 +16,19 @@ export default {
         };
     },
     components: {
-
+        mailList
     },
     created() {
-        this.mails= mailService.creatMails()
-        console.log(this.mails);
-        // mailService.query()
-        //     .then(mails => this.mails = mails)
+        utilService.query('mailDB')
+            .then(mails => {
+                this.mails = mails
+                // console.log(this.mails)
+            })
     },
     methods: {},
     computed: {
-        booksToShow() {
-            console.log('this.mails', this.mails)
+        mailToShow() {
+            // console.log('this.mails', this.mails)
             return this.mails
         },
     },

@@ -6,7 +6,8 @@ export const utilService = {
     remove,
     postMany,
     getRandomInt,
-    _makeId
+    _makeId,
+    _save
 }
 
 // gets all the items
