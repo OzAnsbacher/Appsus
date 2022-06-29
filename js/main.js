@@ -6,7 +6,7 @@ const options = {
     template: `
           <nav class="nav-bar">
             <router-link class="btn-nav" to="/">Home</router-link>
-            <!-- <router-link class="btn-nav" to="/book">Gallery</router-link> -->
+            <router-link class="btn-nav" to="/keep">Keep</router-link>
             <router-link class="btn-nav" to="/about">About</router-link>
             <router-link class="btn-nav" to="/mail">Mail</router-link>
         </nav>
