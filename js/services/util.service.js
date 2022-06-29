@@ -4,7 +4,9 @@ export const storageService = {
     post,
     put,
     remove,
-    postMany
+    postMany,
+    getRandomInt,
+    _makeId
 }
 
 // gets all the items
