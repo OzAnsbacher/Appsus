@@ -56,6 +56,7 @@ export default {
       return 'At ' + year + '-' + monthToDisplay + '-' + date
     },
     selectMail(mail) {
+      this.isOpen=!this.isOpen
       this.isRead=!mail.isRead
       this.$emit("changeIsRead", mail.idx)
     },
