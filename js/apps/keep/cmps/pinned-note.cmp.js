@@ -4,7 +4,7 @@ export default {
     template: `
     <section>
         <ul class="pinned-notes">
-            <note-item v-if="currNote.isPinned" v-for="currNote in pinnedNotes" :note="currNote" :key="currNote.id"></note-item> >  
+            <!-- <note-item  v-for="note in notes" :note="note" /> -->
         </ul>
 
     </section>
