@@ -21,7 +21,7 @@ const gNotes = [
   },
   {
     type: "txt",
-    data: 'this is my note!',
+    data: "this is my note!",
     id: utilService._makeId(),
     date: new Date(),
     isPinned: false,
@@ -55,7 +55,9 @@ const gNotes = [
 export default {
   query,
   addNote,
-  renderNotes,
+  togglePin,
+  removeFromNotes,
+  changeIsDone,
   // getNotes,
   // newNote,
   // addNote,
@@ -63,11 +65,11 @@ export default {
   // removePinned,
   // copyNote,
   // pinNote,
-  // deleteNote,
+  deleteNote,
   // editNote,
   // save,
 }
-var notes =_createNotes()
+var notes = _createNotes()
 
 function _createNotes() {
   let notes = storageService.loadFromStorage(NOTES_KEY)
@@ -81,23 +83,56 @@ function query() {
   return utilService.query(NOTES_KEY)
 }
 
-function addNote(type,color,data,isPinned){
-  let newNote ={
-    id:utilService._makeId(),
+function addNote(type, color, data, isPinned) {
+  let newNote = {
+    id: utilService._makeId(),
     type,
     color,
     data,
     isPinned,
-    date:new Date()
+    date: new Date(),
   }
   notes.unshift(newNote)
   return utilService.post(NOTES_KEY, newNote)
 }
 
-
-function renderNotes(){
-  return utilService.query(NOTES_KEY)
+function togglePin(noteId) {
+  let UpdatedNote = notes.find((note) => note.id === noteId)
+  UpdatedNote.isPinned = !UpdatedNote.isPinned
+  if (UpdatedNote.isPinned) {
+    console.log("pinnnnnned")
+  }
+  console.log(UpdatedNote.isPinned)
+  storageService.store(NOTES_KEY, notes)
 }
+
+function deleteNote(noteId) {
+  return utilService.remove(NOTES_KEY, noteId)
+}
+
+function removeFromNotes(noteId) {
+  // const idx = notes.findIndex((note) => note.id === noteId)
+  // console.log(idx)
+  // console.log('notes befor',notes)
+  // notes.splice(idx, 1)
+  // console.log('notes after',notes)
+  let notes = utilService.remove(NOTES_KEY, noteId)
+  console.log(notes) 
+  return notes
+}
+
+
+
+function changeIsDone(todoId, noteId) {
+  const note = notes.find(note => note.id === noteId);
+  let todos = note.content;
+  const todo = todos.find(todo => todo.id === todoId);
+  console.log(todo);
+  
+  todo.isDone = !todo.isDone;
+  storageService.store(NOTES_KEY, notes);
+}
+
 //return all saved notes or hardcooded notes
 // function getNotes() {
 //     var notes = utilService.query(NOTES_KEY)

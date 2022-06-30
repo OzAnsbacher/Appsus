@@ -2,6 +2,7 @@ export default {
     template: `
         <section>
             <input @keyup.enter="emitAddNote" type="text" placeholder="Write away..." v-model="text" @change="emitData"/>
+            <pre>{{text}}</pre>
         </section>
     `,
     data() {
@@ -20,8 +21,7 @@ export default {
 
         emitAddNote() {
             this.$emit('addNewNote', this.text);
-            this.text = '';
-
+            // this.text = '';
         }
     }
 
