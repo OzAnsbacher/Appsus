@@ -6,19 +6,19 @@ export default {
     props: ["mails"],
     template: `
     <div class="header-mail-main flex space-between">
-        <section>
-            <select name="" id="">
+        <section class="inpox-filters">
+            <input type="search" class="search-inbox" placeholder="search">
+            <select class="inbox-filter" id="">
                 <option value=""></option>
                 <option value="">Unread</option>
                 <option value="">Read</option>
             </select>
-            <select name="" id="">
+            <select class="inbox-filter" id="">
                 <option value="">Time</option>
                 <option value="">Name</option>
             </select>
-            <input type="search" name="" id="">
         </section>
-    <div class="count-unread">{{getCountUnread}}</div>
+    <div class="img-unread"><div class="count-unread">{{getCountUnread}}</div></div>
 </div>
 
     <div class="mail-list-conteiner flex">
@@ -26,9 +26,6 @@ export default {
         <router-link to="/mail"><img class="btn-nav-mail" src="../../../icons/inboxmail.png" alt=""></router-link>
         <router-link to="/mail/compose"><img class="btn-nav-mail" src="../../../icons/newmail.png" alt=""></router-link>
         <router-link to="/mail/send"><img class="btn-nav-mail" src="../../../icons/sendmail.png" alt=""></router-link>
-        <!-- <router-link to="/mail"><button class="btn-nav-mail">Inbox</button></router-link>
-        <router-link to="/mail/compose"><button class="btn-nav-mail">Compose</button></router-link>
-        <router-link to="/mail/send"><button class="btn-nav-mail">Sent</button></router-link> -->
     </div>
     <section class="main-mail flex ">
          <ul class="ul-mail clean-list">

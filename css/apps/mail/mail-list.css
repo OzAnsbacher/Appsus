@@ -1,66 +1,97 @@
 .app-mails-conteiner {
-    background-color: rgb(250, 247, 247);
+    background-color: var(--clr1);
     margin: auto;
-    max-width: 1100px;
+    max-width: 950px;
 }
 
 .mail-list-conteiner {}
 
-.count-unread {
+.inpox-filters {
+    margin-top: 1em;
+    margin-left: 90px;
+    margin-bottom: .5em;
+}
+
+.search-inbox {
+    margin-right: 15px;
+    padding: .5em;
+    border-radius: 15px;
+    border: 2px darkgray solid;
+    padding-left: 40px;
+}
+
+.inbox-filter {
+    padding: 5px 35px;
+    margin-left: 3px;
+    background-color: var(--clr4);
+    border: 0;
+    border-radius: 7px;
+}
+
+.img-unread {
+    /* opacity: .5; */
     background: url(../../../icons/mail.png);
-    height: 60px;
-    width: 60px;
+    height: 45px;
+    width: 45px;
     background-size: contain;
     background-repeat: no-repeat;
     font-family: fantasy;
     text-align: center;
-    font-size: 2em;
-    color: red;
-    text-decoration: dotted;
+}
 
+div.count-unread {
+    width: 1em;
+    opacity: 1;
+    font-size: 1.3em;
+    background-color: firebrick;
+    border-radius: 50%;
+    color: white;
 }
 
 .nav-mail {
-    /* box-shadow: 1px 0px black; */
     flex-direction: column;
-    padding: 0 20px;
+    padding-right: 40px;
     transition: .5s;
-    
 }
 
-.nav-mail:hover{
-    margin: 0 5px;
-    padding-left: 40px ;
+.nav-mail:hover {
+    padding-right: 20px;
+    padding-left: 20px;
 }
 
 
 .btn-nav-mail {
-    height: 40px;
-    width: 40px;
-
+    height: 50px;
+    width: 50px;
+    padding: 5px;
     font-size: 1.2em;
     margin-bottom: 10px;
 }
 
 .btn-nav-mail:hover {
     background-color: rgb(176, 166, 166);
-    
 }
 
+
+
 .ul-mail li:nth-child(odd) {
-    background-color: rgb(236, 232, 232);
+    background-color: var(--clr2);
 }
 
 .ul-mail li:nth-child(even) {
-    background-color: rgb(230, 228, 228);
+    background-color: var(--clr1);
 }
 
 .li-mail {
-    padding: 3px 0;
+    line-height: 2;
 }
 
-.li-mail section:hover {
-    background-color: rgb(222, 217, 217);
+
+li.li-mail :hover:only-of-type {
+    background-color: var(--clr2);
+    box-shadow: 1px 0px 2px 0px black;
+    transform: scaleY(1.1);
+
 }
 
 .li-mail section {
@@ -75,15 +106,15 @@
 
 .mail-name {
     padding-left: 3px;
-    width: 10em;
+    width: 6em;
 }
 
 .mail-subject {
-    width: 20em;
+    width: 28em;
 }
 
 .mail-sentAt {
-    width: 10em;
+    width: 8em;
 }
 
 section.open-mail {

@@ -2,6 +2,7 @@
 @import 'apps/mail/mail-list.css';
 @import 'apps/mail/mail-header.css';
 @import 'parts/helpers.css';
+@import './vars.css';
 
 *{
 box-sizing: border-box;
@@ -19,7 +20,7 @@ body{
 }
 
 .btn-nav{
-  
-height: 3rem;
-width: 3rem;
+  margin: 5px;
+height: 2.5rem;
+width: 2.5rem;
 }
