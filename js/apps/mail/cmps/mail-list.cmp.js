@@ -5,6 +5,7 @@ export default {
     props: ["mails"],
     template: `
     <section>
+        <p><span>unread:</span>{{getCountUnread}}</p>
         <ul>
             <li class="li-mail" v-for="mail in mails" :key="mail.id" >
                 <mail-preview :mail="mail" @changeIsRead="onchangeIsRead"/>
@@ -28,14 +29,24 @@ export default {
             this.mails.some(mail => {
                 if (mail.id === idx) {
                     console.log(mail.isRead);
-                    mail.isRead = !mail.isRead
+                    mail.isRead = false
                     console.log(mail.isRead);
                     return true
                 } else return false
             })
             utilService._save('mailDB', this.mails)
-        }
+        },
     },
-    computed: {},
+    computed: {
+        // debugger
+        getCountUnread() {
+            let count = 0
+            this.mails.forEach(mail => {
+                if (mail.isRead) count++
+            })
+            return count
+        }
+
+    },
     unmounted() { },
 };

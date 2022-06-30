@@ -20,3 +20,14 @@
 .mail-sentAt {
     width: 10em;
 }
+
+section.open-mail{
+    display: flex;
+    flex-direction: column;
+padding-top: 3px;
+padding-bottom: 3px;
+}
+
+.label-open-mail{
+    font-weight: bold;
+}
