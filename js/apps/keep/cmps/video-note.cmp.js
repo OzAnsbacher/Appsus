@@ -1,27 +1,67 @@
+import {videoService} from '../../keep/services/videos-service.js'
+
+
+// not workin chang to onle url not search
 export default {
-    props: ['note'],
     template: `
-        <section class="video-note">
-           
-            <iframe width="100" height="100" src="https://www.youtube.com/embed/A6XUVjK9W4o" class="video" frameborder="0" allowfullscreen></iframe>
-        </section> 
+        <section>
+            <form>
+                <input @keyup.enter.prevent="updateVideoList" v-model="videoSearchParam" type="text" placeholder="Search for Videos"/>
+                <button class="search-btn" @click="updateVideoList">search</button>
+            </form>
+        
+            
+            <div v-if="videoList" class="videos-container">
+                <h1>Search results:</h1>
+
+                <ul class="videos-list">
+                    <li v-for="video in videoList" @click="pickVideo(video.id.videoId)">
+                    {{video.snippet.title}}
+                    </li>
+                </ul>
+            </div>
+
+            <div v-if="videoId" class="displayDiv">
+                <iframe class="watch" width=80% height=80% :src="urlToSrc"></iframe>    
+            </div>
+
+        </section>
+
     `,
+    
+    props: ['note'],
+    
     data() {
         return {
+            videoId: '',
+            videoList: [],
+            videoSearchParam: ''
+
         }
-    },
-    created() {
-    },
-    methods: {
-    },
+    }, 
+
     computed: {
+        urlToSrc() {
+          return `https://www.youtube.com/embed/${this.videoId}`;  
+        } 
+    },
+
+    methods: {
+        updateVideoList() {
+            videoService.getVideos(this.videoSearchParam)
+            .then((res) => {
+                this.videoList = res;
+            })
         },
 
+        pickVideo(videoId) {
+            this.videoId = videoId;
+        },
+    }, 
 
-    mounted() {
-      
-    },
-    components: {
+    watch: {
+        'urlToSrc': function() {
+            this.$emit('videoNoteChanged',this.urlToSrc);
+        },   
     }
-
 }

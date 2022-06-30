@@ -1,28 +1,27 @@
-
-
 export default {
-    props: ['note'],
     template: `
-        <section class="img-note">
-            <img  :src="note.data" alt="Can't get your image" class="img">
-        </section> 
+        <section>
+            <form>
+                <input v-model="imgUrl" type="text" placeholder="Insert Image Url"/>
+                <img v-if="imgUrl" :src="imgUrl" class="input-img"/>
+            </form>
+        </section>
     `,
+    
+    props: [],
+    
     data() {
         return {
+            imgUrl: ''
         }
-    },
-    created() {
-    },
-    methods: {
-    },
-    computed: {
-        },
+    }, 
 
-
-    mounted() {
-      
-    },
-    components: {
-    }
-
+    watch: { 
+        'imgUrl': {
+            handler: function() {
+                this.$emit('imgNoteChanged',this.imgUrl);
+           },
+           immediate: true
+         },
+        }
 }

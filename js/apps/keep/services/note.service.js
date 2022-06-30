@@ -54,6 +54,8 @@ const gNotes = [
 
 export default {
   query,
+  addNote,
+  renderNotes,
   // getNotes,
   // newNote,
   // addNote,
@@ -65,7 +67,7 @@ export default {
   // editNote,
   // save,
 }
-_createNotes()
+var notes =_createNotes()
 
 function _createNotes() {
   let notes = storageService.loadFromStorage(NOTES_KEY)
@@ -79,6 +81,23 @@ function query() {
   return utilService.query(NOTES_KEY)
 }
 
+function addNote(type,color,data,isPinned){
+  let newNote ={
+    id:utilService._makeId(),
+    type,
+    color,
+    data,
+    isPinned,
+    date:new Date()
+  }
+  notes.unshift(newNote)
+  return utilService.post(NOTES_KEY, newNote)
+}
+
+
+function renderNotes(){
+  return utilService.query(NOTES_KEY)
+}
 //return all saved notes or hardcooded notes
 // function getNotes() {
 //     var notes = utilService.query(NOTES_KEY)

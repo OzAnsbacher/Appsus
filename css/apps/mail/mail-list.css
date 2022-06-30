@@ -1,0 +1,22 @@
+
+.li-mail section {
+    display: flex;
+    cursor: pointer;
+}
+
+.read-mail{
+    /* display: flex; */
+    font-weight: bold;
+}
+
+.mail-name {
+    width: 10em;
+}
+
+.mail-subject {
+    width: 10em;
+}
+
+.mail-sentAt {
+    width: 10em;
+}

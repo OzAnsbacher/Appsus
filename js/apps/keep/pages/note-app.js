@@ -1,5 +1,6 @@
 import noteService from "../services/note.service.js";
 import noteList from "./note-list.js";
+import addNew from "../cmps/add-new.cmp.js";
 
 
 export default {
@@ -7,6 +8,7 @@ props:[],
 
 components:{
     noteList,
+    addNew,
 },
 
  template: `
@@ -14,8 +16,8 @@ components:{
      <h2>this is note page</h2>
      <!-- <pre>{{notes}}</pre> -->
      <section class="note-main"  >
-         <!-- <pinned-notes :notes="not\notifications.htmles"></pinned-notes>
-         <add-new :notes="notes" class="add-new"></add-new>  -->
+         <!-- <pinned-notes :notes="not\notifications.htmles"></pinned-notes> -->
+         <add-new :notes="notes" class="add-new"></add-new> 
          <note-list :notes="notesToShow" />
     </section>
  </section>
@@ -33,7 +35,9 @@ return {
 created() {
     noteService.query().then(notes=>this.notes=notes)
 },
-methods: {},
+methods: {
+    
+},
 computed: {
     notesToShow(){
         let notes =this.notes
