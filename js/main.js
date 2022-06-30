@@ -4,13 +4,16 @@ import { router } from "./router.js"
 
 const options = {
     template: `
-          <nav class="nav-bar">
-            <router-link class="btn-nav" to="/">Home</router-link>
-            <router-link class="btn-nav" to="/keep">Keep</router-link>
-            <router-link class="btn-nav" to="/about">About</router-link>
-            <router-link class="btn-nav" to="/mail">Mail</router-link>
-        </nav>
-     <router-view/>
+       <header class="header-conteiner">
+        <h2>Mor&Oz</h2>
+         <nav class="nav-bar">
+           <router-link to="/"><img class="btn-nav" src="./icons/home.png" alt=""></router-link>
+           <router-link to="/keep"><img class="btn-nav" src="./icons/note.png" alt=""></router-link>
+           <router-link to="/about"><img class="btn-nav" src="./icons/about.png" alt=""></router-link>
+           <router-link to="/mail"><img class="btn-nav" src="./icons/mail.png" alt=""></router-link>
+          </nav>
+        </header>
+          <router-view/>
       `,
     components: {
 

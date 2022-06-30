@@ -1,9 +1,25 @@
 @import "/css/apps/keep/note-card.css";
 @import 'apps/mail/mail-list.css';
+@import 'apps/mail/mail-header.css';
+@import 'parts/helpers.css';
 
+*{
+box-sizing: border-box;
+}
 
+body{
+    margin: 0;
+}
+
+.header-conteiner{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(155, 145, 145);
+}
 
 .btn-nav{
-font-size: 2em;
-margin: 10px;
+  
+height: 3rem;
+width: 3rem;
 }
