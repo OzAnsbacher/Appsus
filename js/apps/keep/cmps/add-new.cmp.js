@@ -54,14 +54,7 @@ export default {
         },
         addNewNote() {
             noteService.addNote(this.note.type, this.note.color, this.note.content, this.note.isPinned);
-            this.note = {
-                type: 'txt',
-                color: '#fdfdc4',
-                content: '',
-                time: '',
-                isPinned: false
-            }
-        },
+             },
         setType(val) {
             this.note.type = val;
         },

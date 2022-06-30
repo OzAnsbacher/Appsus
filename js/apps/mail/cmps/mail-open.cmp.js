@@ -2,10 +2,10 @@ export default {
     props: ["mail"],
     template: `
     <section class="open-mail" @click="closeMail">
-        <subject-mail>{{mail.subject}}</subject-mail>
-        <send-mail><span class="label-open-mail">From:</span>{{nameSend}}</send-mail>
-        <time-mail><span class="label-open-mail">At:</span>{{time}}</time-mail>
-        <body-mail><span class="label-open-mail">Body:</span>{{mail.body}}</body-mail>
+        <div>{{mail.subject}}</div>
+        <div><span class="label-open-mail">From:</span>{{nameSend}}</div>
+        <div><span class="label-open-mail">At:</span>{{time}}</div>
+        <div><span class="label-open-mail">Body:</span>{{mail.body}}</div>
     </section>
 `,
     data() {
