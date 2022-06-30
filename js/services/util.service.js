@@ -13,6 +13,7 @@ export const utilService = {
 // gets all the items
 function query(entityType) {
     var entities = JSON.parse(localStorage.getItem(entityType)) || []
+    // console.log(entities)
     return Promise.resolve(entities);
 }
 
@@ -60,7 +61,9 @@ function remove(entityType, entityId) {
             const idx = entities.findIndex(entity => entity.id === entityId);
             entities.splice(idx, 1)
             _save(entityType, entities)
+            return entities
         })
+    
 }
 
 //save to local storage
