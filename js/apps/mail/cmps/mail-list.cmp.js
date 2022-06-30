@@ -1,9 +1,14 @@
 import { utilService } from "../../../services/util.service.js";
 import mailPreview from "./mail-preview.cmp.js";
+import mailCompose from "./mail-compose.cmp.js";
 
 export default {
     props: ["mails"],
     template: `
+    <router-link to="/mail"><button>Inbox</button></router-link>
+    <router-link to="/mail/compose"><button>Compose</button></router-link>
+    <router-link to="/mail/send"><button>Sent</button></router-link>
+    
     <section>
         <p><span>unread:</span>{{getCountUnread}}</p>
         <ul>
@@ -14,14 +19,20 @@ export default {
     </section>
         `,
     components: {
-        mailPreview
+        mailPreview,
+        mailCompose
     },
     data() {
         return {
-
+            // pageMode: {
+            //     iscompose: null,
+            //     isInbox: true,
+            //     isSent: null,
+            // },
         };
     },
     created() {
+
 
     },
     methods: {
@@ -36,16 +47,23 @@ export default {
             })
             utilService._save('mailDB', this.mails)
         },
+        // onPageMode(mode) {
+        //     for (const key in this.pageMode) {
+        //         this.pageMode[key] = null
+        //     }
+        //     this.pageMode[mode]=true
+        // },
+
     },
     computed: {
         // debugger
         getCountUnread() {
             let count = 0
-            this.mails.forEach(mail => {
+            this.mails?.forEach(mail => {
                 if (mail.isRead) count++
             })
             return count
-        }
+        },
 
     },
     unmounted() { },

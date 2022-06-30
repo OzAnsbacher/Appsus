@@ -12,7 +12,8 @@ export default {
 `,
     data() {
         return {
-            mails: null,
+            mailToShow: null,
+            countMailUnRead: 0
         };
     },
     components: {
@@ -21,16 +22,15 @@ export default {
     created() {
         mailService.query('mailDB')
             .then(mails => {
-                this.mails = mails
-                console.log(this.mails)
+                this.mailToShow = mails
             })
     },
     methods: {},
     computed: {
-        mailToShow() {
-            // console.log('this.mails', this.mails)
-            return this.mails
-        },
+        // mailToShow() {
+        //     // console.log('this.mails', this.mails)
+        //     return this.mails
+        // },
     },
     unmounted() { },
 };
