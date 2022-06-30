@@ -2,7 +2,11 @@
     background-color: var(--clr1);
     margin: auto;
     max-width: 950px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
 }
+
+
 
 .mail-list-conteiner {}
 
@@ -13,6 +17,7 @@
 }
 
 .search-inbox {
+    cursor: pointer;
     margin-right: 15px;
     padding: .5em;
     border-radius: 15px;
@@ -21,6 +26,7 @@
 }
 
 .inbox-filter {
+    cursor: pointer;
     padding: 5px 35px;
     margin-left: 3px;
     background-color: var(--clr4);
@@ -83,15 +89,14 @@ div.count-unread {
 }
 
 .li-mail {
-    line-height: 2;
+    line-height: 2.5;
 }
 
 
 li.li-mail :hover:only-of-type {
     background-color: var(--clr2);
     box-shadow: 1px 0px 2px 0px black;
-    transform: scaleY(1.1);
-
+    
 }
 
 .li-mail section {
@@ -110,11 +115,17 @@ li.li-mail :hover:only-of-type {
 }
 
 .mail-subject {
-    width: 28em;
+    width: 30em;
 }
 
 .mail-sentAt {
     width: 8em;
+}
+
+.img-list-mail{
+    height: 35px;
+    width: 35px;
+    margin-right: 1em;
 }
 
 section.open-mail {

@@ -8,9 +8,9 @@ export default {
   <div class="mail-name" @click="selectMail(mail.id)" :class="{'read-mail':isRead}" >{{nameSend}}</div>
   <div class="mail-subject" @click="selectMail(mail.id)" :class="{'read-mail':isRead}">{{subject}}</div>
   <div class="mail-sentAt" @click="selectMail(mail.id)" :class="{'read-mail':isRead}">{{time}}</div>
-  <button @click="selectMail(mail.id, false)">Read</button>
-  <button>Delete</button>
-  <button>Comment</button>
+  <img @click="selectMail(mail.id, false)" class="img-list-mail" src="../../../../icons/openmail.png" alt="">
+  <img class="img-list-mail" src="../../../../icons/delete.png" alt="">
+  <img class="img-list-mail" src="../../../../icons/replyarrow.png" alt="">
 </section>
    `,
   data() {
