@@ -7,11 +7,12 @@ export default {
     template: `
     <div class="header-mail-main flex space-between">
         <section class="inpox-filters">
-            <input type="search" class="search-inbox" placeholder="search">
+            <input type="search" class="search-inbox" v-model="filterBy.txt" @input="filter" placeholder="search">
             <select class="inbox-filter" id="">
+            <!-- <select class="inbox-filter" @change="filter" v-model="filterBy.read" id=""> -->
                 <option value=""></option>
-                <option value="">Unread</option>
-                <option value="">Read</option>
+                <option value="unread">Unread</option>
+                <option value="read">Read</option>
             </select>
             <select class="inbox-filter" id="">
                 <option value="">Time</option>
@@ -42,6 +43,11 @@ export default {
     },
     data() {
         return {
+            filterBy: {
+                txt: null,
+                read: null,
+                byOrder: null,
+            }
         };
     },
     created() {
@@ -62,14 +68,20 @@ export default {
         remove(idx) {
             this.$emit("removingMail", idx)
         },
-     
+        filter() {
+            // console.log(this.filterBy);
+            this.$emit("filterMails", this.filterBy)
+        }
+
     },
     computed: {
         // debugger
         getCountUnread() {
+            if (!this.mails) return
             let count = 0
-            this.mails?.forEach(mail => {
+            this.mails.forEach(mail => {
                 if (mail.isRead) count++
+                return
             })
             return count
         },
