@@ -8,9 +8,9 @@ export default {
   <div class="mail-name" @click="selectMail(mail.id)" :class="{'read-mail':isRead}" >{{nameSend}}</div>
   <div class="mail-subject" @click="selectMail(mail.id)" :class="{'read-mail':isRead}">{{subject}}</div>
   <div class="mail-sentAt" @click="selectMail(mail.id)" :class="{'read-mail':isRead}">{{time}}</div>
-  <button @click="selectMail(mail.id, false)">Read</button>
-  <button>Delete</button>
-  <button>Comment</button>
+  <img @click="selectMail(mail.id, false)" class="img-list-mail" src="././././icons/openmail.png" alt="">
+  <img class="img-list-mail" @click="removeMail(mail.id)" src="././././icons/delete.png" alt="">
+  <img class="img-list-mail" src="././././icons/replyarrow.png" alt="">
 </section>
    `,
   data() {
@@ -19,13 +19,13 @@ export default {
       subject: null,
       time: null,
       isRead: null,
-      isOpen:null
+      isOpen: null
     };
 
   },
   components: {
     mailOpen
-},
+  },
   created() {
     this.nameSend = this.mail.to.slice(0, this.mail.to.indexOf('@')),
       this.subject = this.mail.subject
@@ -55,12 +55,16 @@ export default {
       var monthToDisplay = (month < 10) ? '0' + month : month
       return 'At ' + year + '-' + monthToDisplay + '-' + date
     },
-    selectMail(idx, toOpenMail=true) {
-      if(toOpenMail) this.isOpen=true
-      this.isRead=false
+    selectMail(idx, toOpenMail = true) {
+      if (toOpenMail) this.isOpen = true
+      this.isRead = false
       console.log(idx);
       this.$emit("changeIsRead", idx)
     },
+    removeMail(idx) {
+      this.$emit("removeMail", idx)
+     
+    }
   },
   computed: {
 

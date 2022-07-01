@@ -1,0 +1,137 @@
+.app-mails-conteiner {
+    background-color: var(--clr1);
+    margin: auto;
+    max-width: 950px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* .mail-list-conteiner {} */
+
+.inpox-filters {
+    margin-top: 1em;
+    margin-left: 90px;
+    margin-bottom: .5em;
+}
+
+.search-inbox {
+    cursor: pointer;
+    margin-right: 15px;
+    padding: .5em;
+    border-radius: 15px;
+    border: 2px darkgray solid;
+    padding-left: 40px;
+}
+
+.inbox-filter {
+    cursor: pointer;
+    padding: 5px 35px;
+    margin-left: 3px;
+    background-color: var(--clr4);
+    border: 0;
+    border-radius: 7px;
+}
+
+.img-unread {
+    /* opacity: .5; */
+    background: url(../../../icons/mail.png);
+    height: 45px;
+    width: 45px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    font-family: fantasy;
+    text-align: center;
+}
+
+div.count-unread {
+    width: 1em;
+    opacity: 1;
+    font-size: 1.3em;
+    background-color: firebrick;
+    border-radius: 50%;
+    color: white;
+}
+
+.nav-mail {
+    flex-direction: column;
+    padding-right: 40px;
+    transition: .5s;
+}
+
+.nav-mail:hover {
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+
+.btn-nav-mail {
+    height: 50px;
+    width: 50px;
+    padding: 5px;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.btn-nav-mail:hover {
+    background-color: rgb(176, 166, 166);
+}
+
+
+
+.ul-mail li:nth-child(odd) {
+    background-color: var(--clr2);
+}
+
+.ul-mail li:nth-child(even) {
+    background-color: var(--clr1);
+}
+
+.li-mail {
+    line-height: 2.5;
+}
+
+
+li.li-mail :hover:only-of-type {
+    background-color: var(--clr2);
+    box-shadow: 1px 0px 2px 0px black;
+    
+}
+
+.li-mail section {
+    display: flex;
+    cursor: pointer;
+}
+
+.read-mail {
+    /* display: flex; */
+    font-weight: bold;
+}
+
+.mail-name {
+    padding-left: 3px;
+    width: 6em;
+}
+
+.mail-subject {
+    width: 30em;
+}
+
+.mail-sentAt {
+    width: 8em;
+}
+
+.img-list-mail{
+    height: 35px;
+    width: 35px;
+    margin-right: 1em;
+}
+
+section.open-mail {
+    display: flex;
+    flex-direction: column;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.label-open-mail {
+    font-weight: bold;
+}

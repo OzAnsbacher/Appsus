@@ -3,15 +3,16 @@ import mailOpen from "./mail-open.cmp.js";
 export default {
   props: ["mail"],
   template: `
-  <mail-open :mail="mail" v-if="isOpen" @closedMail="isOpen=null" />
-<section v-else>
-  <div class="mail-name" @click="selectMail(mail.id)" >{{nameSend}}</div>
-  <div class="mail-subject" @click="selectMail(mail.id)">{{subject}}</div>
-  <div class="mail-sentAt" @click="selectMail(mail.id)">{{time}}</div>
-  <!-- <button @click="selectMail(mail.id, false)">Read</button> -->
-  <button>Delete</button>
-  <button>Comment</button>
-</section>
+  <!-- <div class="conteiner-ul-send"> -->
+
+    <mail-open :mail="mail" v-if="isOpen" @closedMail="isOpen=null" />
+    <section class="flex" v-else >
+      <div class="mail-name send-li" @click="selectMail(mail.id)" >{{nameSend}}</div>
+      <div class="mail-subject send-li" @click="selectMail(mail.id)">{{subject}}</div>
+      <div class="mail-sentAt send-li" @click="selectMail(mail.id)">{{time}}</div>
+      <img class="img-list-mail" @click="removeMail(mail.id)" src="././././icons/delete.png" alt="">
+      <img class="img-list-mail" src="././././icons/replyarrow.png" alt="">
+    </section>
    `,
   data() {
     return {
@@ -27,9 +28,9 @@ export default {
   },
   created() {
     console.log('this.mail', this.mail)
-    
+
     this.nameSend = this.mail.to.slice(0, this.mail.to.indexOf('@')),
-    this.subject = this.mail.subject
+      this.subject = this.mail.subject
     this.getTime(this.mail.sentAt)
     this.isRead = this.mail.isRead
 
@@ -59,6 +60,9 @@ export default {
     selectMail() {
       this.isOpen = true
     },
+    removeMail(idx){
+
+    }
   },
   computed: {
 

@@ -6,34 +6,32 @@ export default {
     props: ["mails"],
     template: `
     <div class="header-mail-main flex space-between">
-        <section>
-            <select name="" id="">
+        <section class="inpox-filters">
+            <input type="search" class="search-inbox" v-model="filterBy.txt" @input="filter" placeholder="search">
+            <select class="inbox-filter" id="">
+            <!-- <select class="inbox-filter" @change="filter" v-model="filterBy.read" id=""> -->
                 <option value=""></option>
-                <option value="">Unread</option>
-                <option value="">Read</option>
+                <option value="unread">Unread</option>
+                <option value="read">Read</option>
             </select>
-            <select name="" id="">
+            <select class="inbox-filter" id="">
                 <option value="">Time</option>
                 <option value="">Name</option>
             </select>
-            <input type="search" name="" id="">
         </section>
-    <div class="count-unread">{{getCountUnread}}</div>
+    <div class="img-unread"><div class="count-unread">{{getCountUnread}}</div></div>
 </div>
 
     <div class="mail-list-conteiner flex">
     <div class="nav-mail flex">
-        <router-link to="/mail"><img class="btn-nav-mail" src="../../../icons/inboxmail.png" alt=""></router-link>
-        <router-link to="/mail/compose"><img class="btn-nav-mail" src="../../../icons/newmail.png" alt=""></router-link>
-        <router-link to="/mail/send"><img class="btn-nav-mail" src="../../../icons/sendmail.png" alt=""></router-link>
-        <!-- <router-link to="/mail"><button class="btn-nav-mail">Inbox</button></router-link>
-        <router-link to="/mail/compose"><button class="btn-nav-mail">Compose</button></router-link>
-        <router-link to="/mail/send"><button class="btn-nav-mail">Sent</button></router-link> -->
+        <router-link to="/mail"><img class="btn-nav-mail" src="./././icons/inboxmail.png" alt=""></router-link>
+        <router-link to="/mail/compose"><img class="btn-nav-mail" src="./././icons/newmail.png" alt=""></router-link>
+        <router-link to="/mail/send"><img class="btn-nav-mail" src="./././icons/sendmail.png" alt=""></router-link>
     </div>
     <section class="main-mail flex ">
          <ul class="ul-mail clean-list">
             <li class="li-mail" v-for="mail in mails" :key="mail.id" >
-                <mail-preview :mail="mail" @changeIsRead="onchangeIsRead"/>
+                <mail-preview :mail="mail" @removeMail="remove" @changeIsRead="onchangeIsRead"/>
             </li>
         </ul>
     </section>
@@ -45,15 +43,14 @@ export default {
     },
     data() {
         return {
-            // pageMode: {
-            //     iscompose: null,
-            //     isInbox: true,
-            //     isSent: null,
-            // },
+            filterBy: {
+                txt: null,
+                read: null,
+                byOrder: null,
+            }
         };
     },
     created() {
-
 
     },
     methods: {
@@ -68,20 +65,23 @@ export default {
             })
             utilService._save('mailDB', this.mails)
         },
-        // onPageMode(mode) {
-        //     for (const key in this.pageMode) {
-        //         this.pageMode[key] = null
-        //     }
-        //     this.pageMode[mode]=true
-        // },
+        remove(idx) {
+            this.$emit("removingMail", idx)
+        },
+        filter() {
+            // console.log(this.filterBy);
+            this.$emit("filterMails", this.filterBy)
+        }
 
     },
     computed: {
         // debugger
         getCountUnread() {
+            if (!this.mails) return
             let count = 0
-            this.mails?.forEach(mail => {
+            this.mails.forEach(mail => {
                 if (mail.isRead) count++
+                return
             })
             return count
         },
