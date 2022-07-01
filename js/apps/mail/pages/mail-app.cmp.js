@@ -6,7 +6,7 @@ export default {
     template: `
  
       <section class="app-mails-conteiner">
-        <mail-list :mails="mailToShow"></mail-list>
+        <mail-list :mails="mailToShow" @removingMail="onRemove"></mail-list>
       </section>
 
 `,
@@ -25,7 +25,14 @@ export default {
                 this.mailToShow = mails
             })
     },
-    methods: {},
+    methods: {
+        onRemove(idx){
+            // console.log(this.mailToShow);
+            this.mailToShow=this.mailToShow.filter(mail=>mail.id!==idx)
+            // console.log(this.mailToShow);
+            utilService._save('mailDB',this.mailToShow)
+        }
+    },
     computed: {
         // mailToShow() {
         //     // console.log('this.mails', this.mails)

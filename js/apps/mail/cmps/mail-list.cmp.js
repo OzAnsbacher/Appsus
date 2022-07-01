@@ -30,7 +30,7 @@ export default {
     <section class="main-mail flex ">
          <ul class="ul-mail clean-list">
             <li class="li-mail" v-for="mail in mails" :key="mail.id" >
-                <mail-preview :mail="mail" @changeIsRead="onchangeIsRead"/>
+                <mail-preview :mail="mail" @removeMail="remove" @changeIsRead="onchangeIsRead"/>
             </li>
         </ul>
     </section>
@@ -42,15 +42,9 @@ export default {
     },
     data() {
         return {
-            // pageMode: {
-            //     iscompose: null,
-            //     isInbox: true,
-            //     isSent: null,
-            // },
         };
     },
     created() {
-
 
     },
     methods: {
@@ -65,13 +59,10 @@ export default {
             })
             utilService._save('mailDB', this.mails)
         },
-        // onPageMode(mode) {
-        //     for (const key in this.pageMode) {
-        //         this.pageMode[key] = null
-        //     }
-        //     this.pageMode[mode]=true
-        // },
-
+        remove(idx) {
+            this.$emit("removingMail", idx)
+        },
+     
     },
     computed: {
         // debugger

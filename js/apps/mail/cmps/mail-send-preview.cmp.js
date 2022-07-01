@@ -6,16 +6,13 @@ export default {
   <!-- <div class="conteiner-ul-send"> -->
 
     <mail-open :mail="mail" v-if="isOpen" @closedMail="isOpen=null" />
-    <section class="flex" v-else>
+    <section class="flex" v-else >
       <div class="mail-name send-li" @click="selectMail(mail.id)" >{{nameSend}}</div>
       <div class="mail-subject send-li" @click="selectMail(mail.id)">{{subject}}</div>
       <div class="mail-sentAt send-li" @click="selectMail(mail.id)">{{time}}</div>
-      <img class="img-list-mail" src="././././icons/delete.png" alt="">
+      <img class="img-list-mail" @click="removeMail(mail.id)" src="././././icons/delete.png" alt="">
       <img class="img-list-mail" src="././././icons/replyarrow.png" alt="">
-      <!-- <button>Delete</button>
-      <button>Comment</button> -->
     </section>
-  <!-- </div> -->
    `,
   data() {
     return {
@@ -63,6 +60,9 @@ export default {
     selectMail() {
       this.isOpen = true
     },
+    removeMail(idx){
+
+    }
   },
   computed: {
 
