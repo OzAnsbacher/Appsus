@@ -1,0 +1,51 @@
+
+.compose-conteiner{
+    background-color: var(--clr1);
+    margin: auto;
+    max-width: 950px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.compose-nav{
+    margin-top: 80px;
+}
+
+
+.compose-main{
+    padding-top: 10px;
+}
+
+.compose-adrress{
+display: inline-block;
+padding: 5px 10px;
+margin-bottom: 10px;
+width: 350px;
+}
+
+.compose-btn{
+    cursor: pointer;
+    display: inline-block;
+    margin-left: 10px;
+    width: 100px;
+    height: 30px;
+    background-color: var(--clr4);
+    border: 1.5px solid black;
+}
+
+.compose-btn:hover{
+    background-color: var(--clr5);
+    
+}
+
+.compose-subject{
+    display: block;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    width: 460px;
+}
+
+.compose-txt{
+    display: block;
+    width: 550px;
+    height: 400px;
+}

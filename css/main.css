@@ -1,6 +1,7 @@
 @import "/css/apps/keep/note-card.css";
 @import 'apps/mail/mail-inbox.css';
 @import 'apps/mail/mail-compose.css';
+@import 'apps/mail/mail-send.css';
 @import 'apps/mail/mail-header.css';
 @import 'parts/helpers.css';
 @import './vars.css';
