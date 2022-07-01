@@ -23,9 +23,9 @@ export default {
 
     <div class="mail-list-conteiner flex">
     <div class="nav-mail flex">
-        <router-link to="/mail"><img class="btn-nav-mail" src="./../../icons/inboxmail.png" alt=""></router-link>
-        <router-link to="/mail/compose"><img class="btn-nav-mail" src="./../../icons/newmail.png" alt=""></router-link>
-        <router-link to="/mail/send"><img class="btn-nav-mail" src="./../../icons/sendmail.png" alt=""></router-link>
+        <router-link to="/mail"><img class="btn-nav-mail" src="./././icons/inboxmail.png" alt=""></router-link>
+        <router-link to="/mail/compose"><img class="btn-nav-mail" src="./././icons/newmail.png" alt=""></router-link>
+        <router-link to="/mail/send"><img class="btn-nav-mail" src="./././icons/sendmail.png" alt=""></router-link>
     </div>
     <section class="main-mail flex ">
          <ul class="ul-mail clean-list">

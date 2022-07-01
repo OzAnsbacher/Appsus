@@ -10,8 +10,8 @@ export default {
       <div class="mail-name send-li" @click="selectMail(mail.id)" >{{nameSend}}</div>
       <div class="mail-subject send-li" @click="selectMail(mail.id)">{{subject}}</div>
       <div class="mail-sentAt send-li" @click="selectMail(mail.id)">{{time}}</div>
-      <img class="img-list-mail" src="./../../../icons/delete.png" alt="">
-  <img class="img-list-mail" src="./../../../icons/replyarrow.png" alt="">
+      <img class="img-list-mail" src="././././icons/delete.png" alt="">
+      <img class="img-list-mail" src="././././icons/replyarrow.png" alt="">
       <!-- <button>Delete</button>
       <button>Comment</button> -->
     </section>
