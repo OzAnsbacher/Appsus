@@ -54,20 +54,13 @@ const gNotes = [
 
 export default {
   query,
+  querySearchSort,
   addNote,
   togglePin,
   removeFromNotes,
   changeIsDone,
-  // getNotes,
-  // newNote,
-  // addNote,
-  // newNote,
-  // removePinned,
-  // copyNote,
-  // pinNote,
   deleteNote,
-  // editNote,
-  // save,
+
 }
 var notes = _createNotes()
 
@@ -111,11 +104,6 @@ function deleteNote(noteId) {
 }
 
 function removeFromNotes(noteId) {
-  // const idx = notes.findIndex((note) => note.id === noteId)
-  // console.log(idx)
-  // console.log('notes befor',notes)
-  // notes.splice(idx, 1)
-  // console.log('notes after',notes)
   let notes = utilService.remove(NOTES_KEY, noteId)
   console.log(notes) 
   return notes
@@ -133,58 +121,60 @@ function changeIsDone(todoId, noteId) {
   storageService.store(NOTES_KEY, notes);
 }
 
-//return all saved notes or hardcooded notes
-// function getNotes() {
-//     var notes = utilService.query(NOTES_KEY)
-//     console.log(notes)
-//     if (notes && notes.length) notesDB = notes
-//     // else {
-//         // addNote({ type: 'video', data: 'https://www.youtube.com/watch?v=izTMmZ9WYlE' })
-//         addNote({ type: 'img', data: 'https://i.insider.com/5b7439f21982d822008b5136?width=1000&format=jpeg&auto=webp' })
-//         // addNote({ type: 'txt', data: 'this is my note!' })
-//         // addNote({ type: 'txt', data: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem' })
-//         addNote({ type: 'img', data: 'https://www.realmadrid.com/cs/Satellite?blobcol=urldata&blobheader=image%2Fjpeg&blobkey=id&blobtable=MungoBlobs&blobwhere=1203426903979&ssbinary=true' })
-//         // addNote({ type: 'todo', data: 'gym, laundry, study, repeat' })
-//         // addNote({ type: 'txt', data: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem' })
-//         addNote({ type: 'img', data: 'https://www.realmadrid.com/cs/Satellite?blobcol=urldata&blobheader=image%2Fjpeg&blobkey=id&blobtable=MungoBlobs&blobwhere=1203427678643&ssbinary=true' })
-//         // addNote({ type: 'todo', data: 'sleep early, eat well' })
-//         addNote({ type: 'img', data: 'https://cdn.vox-cdn.com/thumbor/W9cTaRAkndjqCkksEt1LlOazWK8=/0x0:3543x2362/920x613/filters:focal(1544x923:2110x1489):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/70500606/1237247725.0.jpg' })
-//         // save(NOTES_KEY, notesDB)
-//     //
-//     return notesDB
-// }
 
-// // add a new note to notes//
-// function addNote({type,data}){
-// // console.log('type= ',type,'data= ',data)
-// var newAddedNote = newNote(type,data)
-// notesDB.push(newAddedNote)
-// // console.log(notesDB)
 
-// }
+function querySearchSort(filterAndSortParams){
+  // console.log(filterAndSortParams)
+  if (!notes) notes = storageService.load(NOTES_KEY);
+    if (!notes || !notes.length) {
+        notes = fakeNotes;
+        storageService.store(NOTES_KEY, notes)
+    }
 
-// //create new empty note
-// function newNote(type,data){
-//     return{
-//         type,
-//         data,
-//         id:utilService._makeId(),
-//         date: new Date(),
-//         isPinned: false,
+    if (!filterAndSortParams) return Promise.resolve(notes)
+    
+    let filteredNotes = notes;
 
-//     }
-// }
+    if (filterAndSortParams.searchParam) {
 
-// function removePinned(){}
+        filteredNotes = filteredNotes.filter(note => {
+            if (note.type === 'txt') {
+                return note.data.toLowerCase().includes(filterAndSortParams.searchParam.toLowerCase());
+            } else if (note.type === 'todo') {              
+                let filteredTodos = note.data.filter(todo => todo.text.toLowerCase().includes(filterAndSortParams.searchParam.toLowerCase()))
+                return filteredTodos.length
+            }
+            return false;
+        })
+    }
 
-// function copyNote(id){}
+    if (filterAndSortParams.filter && filterAndSortParams.filter !== 'all') {
+        filteredNotes = filteredNotes.filter(note => (note.type === filterAndSortParams.filter));
+    }
 
-// function pinNote(id){}
+    if (filterAndSortParams.sort.by && filterAndSortParams.sort.optsion) {
+        filteredNotes = sortNotes(filteredNotes,filterAndSortParams.sort);
+      }
+      
+      // console.log('filteredNotes',filteredNotes)
+    return Promise.resolve(filteredNotes);
+}
 
-// function deleteNote(id){}
 
-// function editNote(newNote){}
+function sortNotes(notesToSort, sorter) {
+  // console.log("inside sort")
+  var sortFunc;
+  
+  if (sorter.by === 'date') {
+      sortFunc = utilService.createSortFuncDate(sorter.optsion,'date');
+  } else {
+      sortFunc = utilService.createSortFuncTxt(sorter.by, sorter.optsion);
+  }
 
-// function save(){
-//     return utilService.post(NOTES_KEY, notesDB)
-// }
+// console.log('notesToSort',notesToSort)
+
+  let sortedNote= notesToSort.sort(sortFunc);
+  // console.log('sortedNote',sortedNote);
+
+  return sortedNote
+}

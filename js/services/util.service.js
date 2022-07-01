@@ -7,13 +7,15 @@ export const utilService = {
     postMany,
     getRandomInt,
     _makeId,
-    _save
+    _save,
+    createSortFuncDate,
+    createSortFuncTxt,
+
 }
 
 // gets all the items
 function query(entityType) {
     var entities = JSON.parse(localStorage.getItem(entityType)) || []
-    // console.log(entities)
     return Promise.resolve(entities);
 }
 
@@ -83,4 +85,58 @@ function _makeId(length = 8) {
 //min- in, max-out
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min
+}
+
+
+
+//sorting helpers
+
+function createSortFuncDate(op,date) {
+    console.log('op',op)
+    console.log('dateKey',date)
+    console.log('start sotring')
+    function sorting(a,b) {
+        if (op === '+') {
+            if (a[date] > b[date]) {
+                return 1;
+            } else if (a[date] < b[date]) {
+                return -1;
+            } else {
+                return 0;
+            }    
+        } else {
+            if (a[date] < b[date]) {
+                return 1;
+            } else if (a[date] > b[date]) {
+                return -1;
+            } else {
+                return 0;
+            }    
+        } 
+    }
+    return sorting;
+}
+
+
+function createSortFuncTxt(type,op) {
+    function sorting(a,b) {
+        if (op === '+') {
+            if (a[type] > b[type]) {
+                return 1;
+            } else if (a[type] < b[type]) {
+                return -1;
+            } else {
+                return 0;
+            }    
+        } else {
+            if (a[type] < b[type]) {
+                return 1;
+            } else if (a[type] > b[type]) {
+                return -1;
+            } else {
+                return 0;
+            }    
+        } 
+    }
+    return sorting;
 }

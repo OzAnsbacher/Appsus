@@ -5,7 +5,7 @@ import videoNote from "./video-note.cmp.js";
 import todoNote from "./todo-note.cmp.js";
 
 export default {
-    props: ["notes"],
+    props: [""],
     template: `
     <section class="new-note-editor" >
         <form class="new-note-form" action="#" @submit.prevent="addNewNote">
