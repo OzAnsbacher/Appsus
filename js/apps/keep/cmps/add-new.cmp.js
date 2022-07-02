@@ -5,30 +5,36 @@ import videoNote from "./video-note.cmp.js";
 import todoNote from "./todo-note.cmp.js";
 
 export default {
-    props: [""],
+    props: ["notes"],
     template: `
     <section class="new-note-editor" >
         <form class="new-note-form" action="#" @submit.prevent="addNewNote">
-            <h1>Make a new note </h1>
+            <h1 class="new-note-tittle">Make a new note </h1>
         <div class="type-btns">
-            <button class="text-note-btn" @click.prevent="setType('txt')">text note</button>
-            <button class="img-note-btn" @click.prevent="setType('img')">img note</button>
-            <button class="video-note-btn" @click.prevent="setType('video')">video note</button>
-            <button class="todo-note-btn" @click.prevent="setType('todo')">todo note</button>
+            <img class="new-note-icons" src="icons/text-note.png" @click.prevent="setType('txt')">
+            <img class="new-note-icons" src="icons/img-note.png" @click.prevent="setType('img')">
+            <img class="new-note-icons" src="icons/video-note.png"  @click.prevent="setType('video')">
+            <img class="new-note-icons" src="icons/todo-note.png" @click.prevent="setType('todo')">
+            <!-- <button class="img-note-btn" @click.prevent="setType('img')">img note</button> -->
+            <!-- <button class="video-note-btn" @click.prevent="setType('video')">video note</button> -->
+            <!-- <button class="text-note-btn " @click.prevent="setType('txt')">text note</button> -->
+            <!-- <button class="todo-note-btn" @click.prevent="setType('todo')">todo note</button> -->
             
         </div>
 
         <div class="new-notes-types">
-            <txt-note :note="this.note" @addNewNote="addNewNote" @dataChanged="dataContent" v-if="note.type === 'txt'"></txt-note>
+            <txt-note :note="this.note" @dataChanged="dataContent" v-if="note.type === 'txt'"></txt-note>
             <img-note @imgNoteChanged="dataContent" v-else-if="note.type === 'img'"></img-note>
             <video-note @videoNoteChanged="dataContent" v-else-if="note.type === 'video'"></video-note>
             <todo-note :data="this.note.data" @newTodosChanged="dataContent" v-else-if="note.type === 'todo'"></todo-note>
         </div>
             
             <div class="new-note-tools">
-                <button @click.prevent="toggleClrs" class="color-btn">set color</button>
-                <button class="pin-btn" @click.prevent="togglePin">pin</button>
-                <button type="submit" class="submit-btn">submit</button>
+                <img class="new-note-icons" src="icons/color-note.png"  @click.prevent="toggleClrs">
+                <img class="new-note-icons" src="icons/pin-note.png"  @click.prevent="togglePin">
+                <button type="submit" class="btn"> <img class="new-note-icons" src="icons/add-note.png" ></button>
+                <!-- <button @click.prevent="toggleClrs" class="color-btn">set color</button> -->
+                <!-- <button class="pin-btn" @click.prevent="togglePin">pin</button> -->
                 <div v-if="isShowClrs">
                     <input type="button" class="clr-yellow" @click="setClr"/>
                     <input type="button" class="clr-purple" @click="setClr"/>

@@ -27,7 +27,7 @@ function get(entityType, entityId) {
 
 //create new item
 function post(entityType, newEntity) {
-    newEntity.id = _makeId()
+    // newEntity.id = _makeId()
     return query(entityType)
         .then(entities => {
             entities.push(newEntity);
@@ -92,9 +92,9 @@ function getRandomInt(min, max) {
 //sorting helpers
 
 function createSortFuncDate(op,date) {
-    console.log('op',op)
-    console.log('dateKey',date)
-    console.log('start sotring')
+    // console.log('op',op)
+    // console.log('dateKey',date)
+    // console.log('start sotring')
     function sorting(a,b) {
         if (op === '+') {
             if (a[date] > b[date]) {

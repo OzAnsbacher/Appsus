@@ -7,7 +7,6 @@ export default {
         <section>
             <form>
                 <input v-model="videoUrl" type="text" placeholder="Enter video Url"/>
-                <pre>{{videoUrl}}</pre>
             </form>
 
             <div class="displayDiv">

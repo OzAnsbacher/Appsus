@@ -10,7 +10,6 @@ export default {
             <txt-note-display v-else-if="note.type==='txt'" :note="note"/>
             <video-note-display v-else-if="note.type==='video'" :note="note"/>
             <todo-note-display  v-else="note.type==='todo'" :note="note" />
-            <button>here will be a somting alse</button>
         </div>
     `,
   created() {},
