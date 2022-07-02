@@ -5,8 +5,6 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* .mail-list-conteiner {} */
-
 .inpox-filters {
     margin-top: 1em;
     margin-left: 90px;
@@ -75,7 +73,9 @@ div.count-unread {
     background-color: rgb(176, 166, 166);
 }
 
-
+.new-mail:hover{
+background-color: rgb(144, 188, 172);
+}
 
 .ul-mail li:nth-child(odd) {
     background-color: var(--clr2);
@@ -102,7 +102,6 @@ li.li-mail :hover:only-of-type {
 }
 
 .read-mail {
-    /* display: flex; */
     font-weight: bold;
 }
 
