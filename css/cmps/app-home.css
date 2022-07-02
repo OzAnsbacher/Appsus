@@ -1,0 +1,25 @@
+
+.homepage-conteiner{
+    height: 110vh;
+    background-color: #b6b6ac;
+}
+
+.hero-homepage{
+    background: url(../../img/desktop.jpg);
+    width: 100%;
+    height: 140vh;
+    /* background-attachment: local; */
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 20px;
+    padding-top: 200px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.title-homepage{
+columns: 2 auto;
+}
+.body-homepage{
+    margin-top: 60px;
+columns: 2 auto;
+}
