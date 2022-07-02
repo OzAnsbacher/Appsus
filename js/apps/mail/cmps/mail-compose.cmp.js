@@ -5,9 +5,9 @@ export default {
  <section class="compose-conteiner" >
  <div class="mail-list-conteiner flex">
     <div class="nav-mail compose-nav flex">
-        <router-link to="/mail"><img class="btn-nav-mail" src="../../../icons/inboxmail.png" alt=""></router-link>
-        <router-link to="/mail/compose"><img class="btn-nav-mail" src="../../../icons/newmail.png" alt=""></router-link>
-        <router-link to="/mail/send"><img class="btn-nav-mail" src="../../../icons/sendmail.png" alt=""></router-link>
+        <router-link to="/mail"><img class="btn-nav-mail" src="./././icons/inboxmail.png" alt=""></router-link>
+        <router-link to="/mail/compose"><img class="btn-nav-mail" src="./././icons/newmail.png" alt=""></router-link>
+        <router-link to="/mail/send"><img class="btn-nav-mail" src="./././icons/sendmail.png" alt=""></router-link>
     </div>
  <!-- <router-link to="/mail"><button>Inbox</button></router-link>
     <router-link to="/mail/compose"><button>compose</button></router-link>
