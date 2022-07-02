@@ -6,8 +6,8 @@ import noteService from '../services/note.service.js';
 export default {
     template: `
     <ul>
-        <todo-item @deletingTodo="deleteTodo" @isDoneChanged="changeIsDone"
-             v-for="currTodo in note.content"
+        <todo-item @deletingTodo="deleteTodo" @isDoneChanged="changeIsDone" class="flex"
+             v-for="currTodo in note.data"
         :todo="currTodo" :key="currTodo.id"></todo-item>
     </ul>
     `,

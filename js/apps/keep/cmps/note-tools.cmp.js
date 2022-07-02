@@ -6,10 +6,16 @@ export default {
         <div v-if="isShowClrs" class="clr-picker">
             <div @click="emitChangeColor(color.code)" v-for="color in colors" :class="color.name" class="clr-circle"></div>
         </div>
-        <button class="color-btn" @click="toggleClrs">color</button>
-    <button class="pin-btn" :note="note"  @click="emitTogglePin">pin</button>
-    <button class="dlt-btn" @click="emitDeletingNote">delet</button>
-    <button  class="email-btn">email</button>
+        <div class="note-tools-btn">
+            <img class="new-note-icons" src="icons/color-note.png"  @click.prevent="toggleClrs">
+            <img class="new-note-icons" src="icons/pin-note.png"  @click="emitTogglePin">
+            <img class="new-note-icons" src="icons/delet-note.png"  @click="emitDeletingNote">
+            <img class="new-note-icons" src="icons/email-note.png" >
+            <!-- <button class="color-btn" @click="toggleClrs">color</button> -->
+            <!-- <button class="pin-btn" :note="note"  @click="emitTogglePin">pin</button> -->
+            <!-- <button class="dlt-btn" @click="emitDeletingNote">delet</button> -->
+            <!-- <button  class="email-btn">email</button> -->
+        </div>
     </section>
     `,
     created() {

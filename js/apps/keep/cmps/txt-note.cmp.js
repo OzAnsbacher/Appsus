@@ -1,6 +1,6 @@
 export default {
     template: `
-        <section>
+        <section class="new-notes">
             <input @keyup.enter="emitAddNote" type="text" placeholder="Write away..." v-model="text" @change="emitData"/>
             <pre>{{text}}</pre>
         </section>

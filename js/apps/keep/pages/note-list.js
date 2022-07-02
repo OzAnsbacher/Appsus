@@ -9,10 +9,10 @@ export default {
   template: `        
  <section class="note-list">
     <ul>
-        <li v-for="note in notes" :key="note.id" class="note-items-container">
+        <div v-for="note in notes" :key="note.id" class="note-items-container">
              <note-item :note="note" />
              <note-tools :note="note" @toggledPin="togglePin"  @deletedNote="deleteNote(note.id)"/>
-        </li>
+        </div>
     </ul>
 </section>
 `,

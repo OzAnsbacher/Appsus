@@ -1,7 +1,6 @@
 import { utilService } from "../../../services/util.service.js"
 import { storageService } from "../../../services/Storage.service.js"
 
-var notesDB = []
 const NOTES_KEY = "notes"
 
 const gNotes = [
@@ -60,6 +59,7 @@ export default {
   removeFromNotes,
   changeIsDone,
   deleteNote,
+  deleteTodo,
 
 }
 var notes = _createNotes()
@@ -83,8 +83,9 @@ function addNote(type, color, data, isPinned) {
     color,
     data,
     isPinned,
-    date: new Date(),
+    date: new Date().getTime(),
   }
+  console.log()
   notes.unshift(newNote)
   return utilService.post(NOTES_KEY, newNote)
 }
@@ -156,25 +157,37 @@ function querySearchSort(filterAndSortParams){
         filteredNotes = sortNotes(filteredNotes,filterAndSortParams.sort);
       }
       
-      // console.log('filteredNotes',filteredNotes)
+      console.log('sorted notes 2',filteredNotes)
     return Promise.resolve(filteredNotes);
 }
 
 
 function sortNotes(notesToSort, sorter) {
-  // console.log("inside sort")
+  console.log("inside sort")
   var sortFunc;
   
   if (sorter.by === 'date') {
       sortFunc = utilService.createSortFuncDate(sorter.optsion,'date');
+      
   } else {
       sortFunc = utilService.createSortFuncTxt(sorter.by, sorter.optsion);
+      
   }
 
-// console.log('notesToSort',notesToSort)
+console.log('notesToSort',notesToSort)
 
   let sortedNote= notesToSort.sort(sortFunc);
-  // console.log('sortedNote',sortedNote);
+  console.log('sortedNote',sortedNote);
 
   return sortedNote
+}
+
+
+
+function deleteTodo(todoId, noteId) {
+  const note = notes.find(note => note.id === noteId);
+  let todos = note.data;
+  const todoIdx = todos.findIndex(todo => { todo.id === todoId })
+  todos.splice(todoIdx, 1);
+  storageService.store(NOTES_KEY, notes);
 }

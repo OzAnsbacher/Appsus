@@ -1,7 +1,8 @@
 export default {
     template: `
-        <section class="app-filter">
-        filterBy<select v-model="filterBy">
+        <section class="note-filter">
+        <img class="new-note-icons" src="icons/filter-note.png" >
+        <select v-model="filterBy">
                 <option>All</option>
                 <option>Text</option>
                 <option>Todos</option>

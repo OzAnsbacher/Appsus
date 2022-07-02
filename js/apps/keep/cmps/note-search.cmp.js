@@ -1,8 +1,9 @@
 export default {
     template: `
-        <section class="app-search">
-            <input @keyup.enter="emitSearch" type="text" v-model="searchParam" placeholder="Search inside notes"/>
-            <button @click="emitSearch"> reset search</button>
+        <section class="note-search">
+                <input @keyup.enter="emitSearch" type="text" v-model="searchParam" placeholder="Search inside notes"/>
+                <button @click="emitSearch" class="btn fa-solid fa-arrow-rotate-right ">
+                </button>
         </section>
     `,
     data() {

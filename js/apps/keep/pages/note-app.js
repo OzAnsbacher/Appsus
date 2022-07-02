@@ -1,109 +1,110 @@
-import noteService from "../services/note.service.js";
-import noteList from "./note-list.js";
-import addNew from "../cmps/add-new.cmp.js";
-import pinnedNote from "../cmps/pinned-note.cmp.js";
-import noteSearchSort from "../cmps/note-search-sort.cmo.js";
-
-
+import noteService from "../services/note.service.js"
+import noteList from "./note-list.js"
+import addNew from "../cmps/add-new.cmp.js"
+import pinnedNote from "../cmps/pinned-note.cmp.js"
+import noteSearchSort from "../cmps/note-search-sort.cmo.js"
 
 export default {
-props:[],
+  props: [],
 
-components:{
+  components: {
     noteList,
     addNew,
     pinnedNote,
     noteSearchSort,
-},
+  },
 
- template: `
+  template: `
  <section class="note-app">
-     <h2>this is note page</h2>
-     <note-search-sort @clearSearch="clearSearch" @searchBy="searchNotes" @filtered="filterNotes" @sortedBy="sortNotes"/>
+     <h2>welcome to your note page</h2>
+     <div class="note-search-sort"> 
+         <note-search-sort  
+         @clearSearch="clearSearch" 
+         @searchBy="searchNotes" 
+         @filtered="filterNotes" 
+         @sortedBy="sortNotes"/>
+     </div>
 
-     <section class="note-main"  >
-        
-         <add-new :notes="notes" class="add-new" @add="addNote"></add-new> 
+     <div class="note-main"  >
+         <pinned-note :notes="notes"></pinned-note>
+         <add-new :notes="notes" class="add-new" @add="addedNote"></add-new> 
          <note-list :notes="notes" @delet="deleteNote"/>
-    </section>
+    </div>
  </section>
 `,
-data() {
-return {
-    notes:null,
-    filterAndSortParams: {
-        searchParam: '',
-        filter: 'all',
-        sort: {by: 'date', op: '-'}
+  data() {
+    return {
+      notes: [],
+      filterAndSortParams: {
+        searchParam: "",
+        filter: "all",
+        sort: { by: "date", option: "-" },
+      },
     }
-};
-},
-created() {
-    noteService.query().then(notes=>this.notes=notes)
-},
-methods: {
-    addNote(newNote){
-        console.log(newNote)
-        newNote.then(note=>{
-         this.notes.push(note)
-            console.log(this.notes);
-        })
+  },
+  created() {
+    noteService.query().then((notes) => (this.notes = notes))
+  },
+  methods: {
+    addedNote(newNote) {
+      console.log(newNote)
+      console.log(this.notes)
+      // this.notes.push(newNote)
+      // this.updateNotes();
+      newNote.then(note=>{
+       this.notes.push(note)})
+      //     console.log(this.notes);
+      // })
     },
-    deleteNote(noteId){
-        console.log(noteId)
-        noteService.removeFromNotes(noteId).then(notes=>this.notes=notes)
+    deleteNote(noteId) {
+      console.log(noteId)
+      noteService.removeFromNotes(noteId).then((notes) => (this.notes = notes))
     },
     clearSearch() {
-        this.filterAndSortParams.searchParam = '';
-        noteService.querySearchSort()
-        .then((notes) => {this.notes = notes})
+      this.filterAndSortParams.searchParam = ""
+      noteService.querySearchSort().then((notes) => {
+        this.notes = notes
+      })
     },
     searchNotes(searchParam) {
-        this.filterAndSortParams.searchParam = searchParam;
-        // console.log(this.filterAndSortParams.searchParam)
-        this.updateNotes();
+      this.filterAndSortParams.searchParam = searchParam
+      // console.log(this.filterAndSortParams.searchParam)
+      this.updateNotes()
     },
     updateNotes() {
-        noteService.querySearchSort(this.filterAndSortParams)
-        .then((notes) => {
-        this.notes = notes}
-        )
-            
+      // console.log("befor", this.notes)
+      // console.log("from update", sort)
+      noteService.querySearchSort(this.filterAndSortParams)
+      .then((notes) => {
+        this.notes = notes
+      })
+      // console.log("after", this.notes)
     },
     filterNotes(filter) {
-        let filterToSend
-        switch (filter) {
-            case 'text': 
-                filterToSend = 'txt';
-                break;
-            case 'image': 
-                filterToSend = 'img';
-                break;
-            case 'todos': 
-                filterToSend = 'todo';
-                break;
-            case 'video': 
-                filterToSend = 'video';
-                break;
-        }
-        this.filterAndSortParams.filter = filterToSend;
-        this.updateNotes();
+      let filterToSend
+      switch (filter) {
+        case "text":
+          filterToSend = "txt"
+          break
+        case "image":
+          filterToSend = "img"
+          break
+        case "todos":
+          filterToSend = "todo"
+          break
+        case "video":
+          filterToSend = "video"
+          break
+      }
+      this.filterAndSortParams.filter = filterToSend
+      this.updateNotes()
     },
     sortNotes(sorter) {
-        // console.log(sorter)
-        this.filterAndSortParams.sort = sorter;
-        // console.log(this.filterAndSortParams.sort)
-        this.updateNotes();
+      this.filterAndSortParams.sort = sorter
+      this.updateNotes()
     },
-    
-},
-computed: {
-    // notesToShow(){
-    //     let notes =this.notes
-    //     if(!this.filterBy) return notes
-    //     //add filters later
-
-    // },
-},
-unmounted() {},
-};
+  },
+  computed: {
+    },
+  unmounted() {},
+}

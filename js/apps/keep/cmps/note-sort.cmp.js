@@ -1,8 +1,9 @@
 
 export default {
     template: `
-        <section class="app-sort">
-            <div class="sorters">
+        <section class="note-sort">
+            <div class="sorters flex">
+            <img class="new-note-icons" src="icons/sort-note.png" >
                 <select v-model="sortBy.by">
                     <option>Date</option>
                     <option>Type</option>

@@ -1,10 +1,13 @@
 @import "/css/apps/keep/note-card.css";
+@import './apps/keep/note-app.css';
 @import 'apps/mail/mail-inbox.css';
 @import 'apps/mail/mail-compose.css';
 @import 'apps/mail/mail-send.css';
 @import 'cmps/app-home.css';
 @import 'parts/helpers.css';
 @import './vars.css';
+@import './apps/keep/new.note.css';
+@import './apps/keep/btn-notes.css';
 
 
 *{
